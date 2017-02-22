@@ -1,27 +1,26 @@
 <?php
 
-$accessToken = '‚ ‚È‚½‚ÌƒAƒNƒZƒXƒg[ƒNƒ“I';
+$accessToken = 'huTANryz57LHbpGQCtKg2ZC9rEZeG3QEfwIC85zZjqLhKQv+wPyC2FJ2KgnchVUic3doAfurSw1CUbbwPVESgyKbZRc1eDPaXMfss2gFDNiFABFRcUKw94L+wosnBkFL4oayHBOwvjaaWvdgkMb96QdB04t89/1O/w1cDnyilFU=';
 
-
-//ƒ†[ƒU[‚©‚ç‚ÌƒƒbƒZ[ƒWŽæ“¾
+//ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‹ã‚‰ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å–å¾—
 $json_string = file_get_contents('php://input');
 $jsonObj = json_decode($json_string);
 
 $type = $jsonObj->{"events"}[0]->{"message"}->{"type"};
-//ƒƒbƒZ[ƒWŽæ“¾
+//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å–å¾—
 $text = $jsonObj->{"events"}[0]->{"message"}->{"text"};
-//ReplyTokenŽæ“¾
+//ReplyTokenå–å¾—
 $replyToken = $jsonObj->{"events"}[0]->{"replyToken"};
 
-//ƒƒbƒZ[ƒWˆÈŠO‚Ì‚Æ‚«‚Í‰½‚à•Ô‚³‚¸I—¹
+//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ä»¥å¤–ã®ã¨ãã¯ä½•ã‚‚è¿”ã•ãšçµ‚äº†
 if($type != "text"){
 	exit;
 }
 
-//•ÔMƒf[ƒ^ì¬
+//è¿”ä¿¡ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 $response_format_text = [
 	"type" => "text",
-	"text" => "‹à„ƒf[ƒXI"
+	"text" => "ãƒ†ã‚¹ãƒˆokã§ã™ï¼"
 	];
 $post_data = [
 	"replyToken" => $replyToken,
