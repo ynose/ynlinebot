@@ -1,8 +1,7 @@
 <?php
 include_once ('DatetimeUtility.php');
 
-$accessToken = 'huTANryz57LHbpG
-QCtKg2ZC9rEZeG3QEfwIC85zZjqLhKQv+wPyC2FJ2KgnchVUic3doAfurSw1CUbbwPVESgyKbZRc1eDPaXMfss2gFDNiFABFRcUKw94L+wosnBkFL4oayHBOwvjaaWvdgkMb96QdB04t89/1O/w1cDnyilFU=';
+$accessToken = 'huTANryz57LHbpGQCtKg2ZC9rEZeG3QEfwIC85zZjqLhKQv+wPyC2FJ2KgnchVUic3doAfurSw1CUbbwPVESgyKbZRc1eDPaXMfss2gFDNiFABFRcUKw94L+wosnBkFL4oayHBOwvjaaWvdgkMb96QdB04t89/1O/w1cDnyilFU=';
 
 //ユーザーからのメッセージ取得
 $json_string = file_get_contents('php://input');
