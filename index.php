@@ -1,5 +1,5 @@
 <?php
-include_once ('DatetimeUtility.php');
+//include_once ('DatetimeUtility.php');
 
 $accessToken = 'huTANryz57LHbpGQCtKg2ZC9rEZeG3QEfwIC85zZjqLhKQv+wPyC2FJ2KgnchVUic3doAfurSw1CUbbwPVESgyKbZRc1eDPaXMfss2gFDNiFABFRcUKw94L+wosnBkFL4oayHBOwvjaaWvdgkMb96QdB04t89/1O/w1cDnyilFU=';
 
@@ -17,10 +17,11 @@ $replyToken = $jsonObj->{"events"}[0]->{"replyToken"};
 if($type != "text"){
 	exit;
 }
-$reply = "テストOKです！";
-//if (strpos($text, '今日') !== false && strpos($text, '何日') !== false) {
-	$reply = DatetimeUtility::date('JK年n月j日') . 'です。';
-//}
+$reply = "テスト中です！";
+if (strpos($text, '今日') !== false && strpos($text, '何日') !== false) {	
+//$reply = DatetimeUtility::date('JK年n月j日') . 'です。';		
+$reply = $text;
+}
 
 //返信データ作成
 $response_format_text = [
