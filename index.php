@@ -1,6 +1,8 @@
 <?php
+include_once ('DatetimeUtility.php');
 
-$accessToken = 'huTANryz57LHbpGQCtKg2ZC9rEZeG3QEfwIC85zZjqLhKQv+wPyC2FJ2KgnchVUic3doAfurSw1CUbbwPVESgyKbZRc1eDPaXMfss2gFDNiFABFRcUKw94L+wosnBkFL4oayHBOwvjaaWvdgkMb96QdB04t89/1O/w1cDnyilFU=';
+$accessToken = 'huTANryz57LHbpG
+QCtKg2ZC9rEZeG3QEfwIC85zZjqLhKQv+wPyC2FJ2KgnchVUic3doAfurSw1CUbbwPVESgyKbZRc1eDPaXMfss2gFDNiFABFRcUKw94L+wosnBkFL4oayHBOwvjaaWvdgkMb96QdB04t89/1O/w1cDnyilFU=';
 
 //ユーザーからのメッセージ取得
 $json_string = file_get_contents('php://input');
@@ -16,12 +18,17 @@ $replyToken = $jsonObj->{"events"}[0]->{"replyToken"};
 if($type != "text"){
 	exit;
 }
+$reply = "テストOKです！";
+if (strpos($text, '今日') !== false && strpos($text, '何日') !== false) {
+	$jpDate = new DatetimeUtility;
+	$reply = jpDate->date('JK年n月j日') . 'です。';
+}
 
 //返信データ作成
 $response_format_text = [
 	"type" => "text",
-	"text" => "テストokです！"
-	];
+	"text" => $reply	
+];
 $post_data = [
 	"replyToken" => $replyToken,
 	"messages" => [$response_format_text]
