@@ -20,7 +20,7 @@ if($type != "text"){
 }
 $reply = "テストOKです！";
 //if (strpos($text, '今日') !== false && strpos($text, '何日') !== false) {
-	$reply = DatetimeUtility->date('JK年n月j日') . 'です。';
+	$reply = DatetimeUtility::date('JK年n月j日') . 'です。';
 //}
 
 //返信データ作成
