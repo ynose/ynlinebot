@@ -91,7 +91,7 @@ if ($event == 'postback') {
   
   $response_format = [
     "type" => "text",
-    "text" => $led . ' (' . $pin . ')' . $response
+    "text" => $led . ' (' . $pin . ')' . var_dump($response)
   ];
 
 }
