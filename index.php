@@ -69,12 +69,22 @@ if ($event == 'postback') {
   $led = $jsonObj->{"events"}[0]->{"postback"}->{"data"};
   switch ($led) {
     case "red":
+      $pin = "D13";
       break;
     case "yellow":
+      $pin = "D15";
       break;
     case "blue":
+      $pin = "D0";
       break;
   }
+
+  // blynkでLEDをつける
+  $blynk = curl_init("http://blynk-cloud.com/753525ca17b54e83add9df0c635266c6/update/" . $pin . "?value=1");
+  curl_setopt($blynk, CURLOPT_CUSTOMREQUEST, 'GET');
+  $result = curl_exec($blynk);
+  curl_close($blynk);
+  
   $response_format = [
     "type" => "text",
     "text" => $led
