@@ -88,10 +88,11 @@ if ($event == 'postback') {
   $response = curl_exec($blynk);
   curl_close($blynk);
   
-  $response_format = [
-    "type" => "text",
-    "text" => $led . ' (' . $pin . ')'
-  ];
+  return;
+  // $response_format = [
+  //   "type" => "text",
+  //   "text" => $led . ' (' . $pin . ')'
+  // ];
 
 }
 
