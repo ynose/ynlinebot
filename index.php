@@ -12,56 +12,74 @@ $text = $jsonObj->{"events"}[0]->{"message"}->{"text"};
 //ReplyToken取得
 $replyToken = $jsonObj->{"events"}[0]->{"replyToken"};
 
+$event = $jsonObj->{"events"}[0]->{"type"};
+
 //メッセージ以外のときは何も返さず終了
-if($type != "text"){
-	exit;
-}
+if($type == "text"){
 
-$reply = "テストOKです！";
-$response_format = [
-  "type" => "text",
-  "text" => $reply
-];
-
-if (strpos($text, '今日') !== false && strpos($text, '何日') !== false) {
-  $timestamp = time();
-  $year = date('Y', $timestamp);
-  $jyear = $year - 1988;
-  $reply = '平成' . $jyear . date('年m月d日', $timestamp) . 'です。';
   $response_format = [
-	  "type" => "text",
-	  "text" => $reply
-	];
-}
-
-if (strpos($text, 'LED') !== false && strpos($text, 'つけて') !== false) {
-  $response_format = [
-    "type" => "template",
-    "altText" => "何色をつけますか？",
-    "template" => [
-        "type" => "buttons",
-        "thumbnailImageUrl" => "https://dl.dropboxusercontent.com/u/7598940/LINEBOT.JPG",
-        "title" => "LED",
-        "text" => "何色をつけますか？",
-        "actions" => [
-            [
-              "type" => "postback",
-              "label" => "青",
-              "data" => "action=led&itemid=1"
-            ],
-            [
-              "type" => "postback",
-              "label" => "黄",
-              "data" => "action=led&itemid=2"
-            ],
-            [
-              "type" => "postback",
-              "label" => "赤",
-              "data" => "action=led&itemid=3"
-            ]
-        ]
-    ]
+    "type" => "text",
+    "text" => "テストOKです！"
   ];
+
+  if (strpos($text, '今日') !== false && strpos($text, '何日') !== false) {
+    $timestamp = time();
+    $year = date('Y', $timestamp);
+    $jyear = $year - 1988;
+    $reply = '平成' . $jyear . date('年m月d日', $timestamp) . 'です。';
+    $response_format = [
+      "type" => "text",
+      "text" => $reply
+    ];
+  }
+
+  if (strpos($text, 'LED') !== false && strpos($text, 'つけて') !== false) {
+    $response_format = [
+      "type" => "template",
+      "altText" => "何色をつけますか？",
+      "template" => [
+          "type" => "buttons",
+          "thumbnailImageUrl" => "https://dl.dropboxusercontent.com/u/7598940/LINEBOT.JPG",
+          "title" => "LED",
+          "text" => "何色をつけますか？",
+          "actions" => [
+              [
+                "type" => "postback",
+                "label" => "赤",
+                "data" => "red"
+              ],
+              [
+                "type" => "postback",
+                "label" => "黄",
+                "data" => "yellow"
+              ],
+              [
+                "type" => "postback",
+                "label" => "青",
+                "data" => "blue"
+              ]
+          ]
+      ]
+    ];
+  }
+
+}
+
+if ($event == 'postback') {
+  $led = $jsonObj->{"events"}[0]->{"postback"}->{"data"};
+  switch ($led) {
+    case "red":
+      break;
+    case "yellow":
+      break;
+    case "blue":
+      break;
+  }
+  $response_format = [
+    "type" => "text",
+    "text" => $led
+  ];
+
 }
 
 //返信データ作成
