@@ -23,17 +23,46 @@ if (strpos($text, '今日') !== false && strpos($text, '何日') !== false) {
   $year = date('Y', $timestamp);
   $jyear = $year - 1988;
   $reply = '平成' . $jyear . date('年m月d日', $timestamp) . 'です。';
+  $response_format = [
+	  "type" => "text",
+	  "text" => $reply
+	];
 }
 
+if (strpos($text, 'LED') !== false && strpos($text, 'つけて') !== false) {
+  $response_format = [
+    "type" => "template",
+    "altText" => "何色をつけますか？",
+    "template" => [
+        "type" => "buttons",
+        "thumbnailImageUrl" => "https://dl.dropboxusercontent.com/u/7598940/LINEBOT.JPG",
+        "title" => "LED",
+        "text" => "何色をつけますか？",
+        "actions" => [
+            [
+              "type" => "postback",
+              "label" => "青",
+              "data" => "action=led&itemid=1"
+            ],
+            [
+              "type" => "postback",
+              "label" => "黄",
+              "data" => "action=led&itemid=2"
+            ],
+            [
+              "type" => "postback",
+              "label" => "赤",
+              "data" => "action=led&itemid=3"
+            ]
+        ]
+    ]
+  ];
+}
 
 //返信データ作成
-$response_format_text = [
-	"type" => "text",
-	"text" => $reply
-	];
 $post_data = [
 	"replyToken" => $replyToken,
-	"messages" => [$response_format_text]
+	"messages" => [$response_format]
 	];
 
 $ch = curl_init("https://api.line.me/v2/bot/message/reply");
