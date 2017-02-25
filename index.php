@@ -18,6 +18,11 @@ if($type != "text"){
 }
 
 $reply = "テストOKです！";
+$response_format = [
+  "type" => "text",
+  "text" => $reply
+];
+
 if (strpos($text, '今日') !== false && strpos($text, '何日') !== false) {
   $timestamp = time();
   $year = date('Y', $timestamp);
