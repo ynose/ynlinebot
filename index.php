@@ -82,12 +82,14 @@ if ($event == 'postback') {
   // blynkでLEDをつける
   $blynk = curl_init("http://blynk-cloud.com/753525ca17b54e83add9df0c635266c6/update/" . $pin . "?value=1");
   curl_setopt($blynk, CURLOPT_CUSTOMREQUEST, 'GET');
+  curl_setopt($blynk, CURLOPT_SSL_VERIFYPEER, false); // 証明書の検証を行わない
+  curl_setopt($blynk, CURLOPT_RETURNTRANSFER, false); // curl_execの結果を文字列で返す
   $result = curl_exec($blynk);
   curl_close($blynk);
   
   $response_format = [
     "type" => "text",
-    "text" => $led
+    "text" => $led . ' (' . $pin . ')'
   ];
 
 }
