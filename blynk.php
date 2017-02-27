@@ -1,5 +1,6 @@
 <?php
-  header('Content-Type: text/html; charset=UTF-8');
+header('Location: https://blynk-cloud.com/753525ca17b54e83add9df0c635266c6/update/D0?value=1');
+exit;
 
 //   // blynkでLEDをつける
   $blynk = curl_init();
