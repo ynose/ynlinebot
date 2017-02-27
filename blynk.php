@@ -5,7 +5,9 @@
   $blynk = curl_init();
 //  curl_setopt($blynk, CURLOPT_URL, 'http://blynk-cloud.com/753525ca17b54e83add9df0c635266c6/update/D0?value=1');
   curl_setopt($blynk, CURLOPT_URL, 'http://cloud.blynk.cc:8080/753525ca17b54e83add9df0c635266c6/update/D0?value=1');
-//  curl_setopt($blynk, CURLOPT_USERAGENT, 'Mozilla/5.0 (iPhone; U; CPU like Mac OS X; en) AppleWebKit/420.1 (KHTML, like Gecko) Version/3.0 Mobile/3B48b Safari/419.3');
+  curl_setopt($blynk, CURLOPT_USERAGENT, 'Mozilla/5.0 (iPhone; U; CPU like Mac OS X; en) AppleWebKit/420.1 (KHTML, like Gecko) Version/3.0 Mobile/3B48b Safari/419.3');
+  curl_setopt($blynk, CURLOPT_SSL_VERIFYPEER, FALSE);
+  curl_setopt($blynk, CURLOPT_VERBOSE, TRUE);
   curl_setopt($blynk, CURLOPT_CUSTOMREQUEST, 'GET');
   curl_setopt($blynk, CURLOPT_RETURNTRANSFER, TRUE);
   curl_setopt($blynk, CURLOPT_HEADER, FALSE);
